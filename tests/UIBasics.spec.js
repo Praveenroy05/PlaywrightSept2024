@@ -30,7 +30,7 @@ test("First Test Case", async function({browser}){
 
 // locator(), fill(), click(), toBeVisible()
 
-test.only("First Test case using page fixture", async ({page})=>{
+test("First Test case using page fixture", async ({page})=>{
 
     await page.goto("https://rahulshettyacademy.com/client")
     await page.locator('#userEmail').fill("testnHNk@gmail.com", {timeout :100*1000})
@@ -38,4 +38,32 @@ test.only("First Test case using page fixture", async ({page})=>{
     await page.locator("#login").click()
     await expect(page.locator(".fa-sign-out")).toBeVisible()
 })
+
+// textContent(), allTextContents(), first(), last(), nth(), selectOption()
+
+// textContent() - To get the text value an element
+// allTextContents() - To get the text values from multiple element at a time
+
+// first() - To identify the first matching element from all the matching element
+// last() - To identify the last matching element from all the matching element
+// nth(index) - index will start from 0. nth(2), nth(3) 
+
+
+// .form-control - matching 2 different elements
+
+test.only("Get text from elements", async ({page}) =>{
+
+    await page.goto("https://rahulshettyacademy.com/client")
+    await page.locator(".form-control").nth(0).fill("testnHNk@gmail.com")
+    await page.locator(".form-control").nth(1).fill("Test@123")
+    await page.locator("#login").click()
+    await expect(page.locator(".fa-sign-out")).toBeVisible()
+    const productName = await page.locator(".card-body b").first().textContent()
+    console.log(productName) // 
+
+    const productsName = await page.locator(".card-body b").allTextContents()
+    console.log(productsName) //[]
+
+})
+
 
