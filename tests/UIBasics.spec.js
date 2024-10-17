@@ -39,7 +39,7 @@ test("First Test case using page fixture", async ({page})=>{
     await expect(page.locator(".fa-sign-out")).toBeVisible()
 })
 
-// textContent(), allTextContents(), first(), last(), nth(), selectOption()
+// textContent(), allTextContents(), first(), last(), nth()
 
 // textContent() - To get the text value an element
 // allTextContents() - To get the text values from multiple element at a time
@@ -51,7 +51,7 @@ test("First Test case using page fixture", async ({page})=>{
 
 // .form-control - matching 2 different elements
 
-test.only("Get text from elements", async ({page}) =>{
+test("Get text from elements", async ({page}) =>{
 
     await page.goto("https://rahulshettyacademy.com/client")
     await page.locator(".form-control").nth(0).fill("testnHNk@gmail.com")
@@ -65,5 +65,61 @@ test.only("Get text from elements", async ({page}) =>{
     console.log(productsName) //[]
 
 })
+
+// Handling Radio button, checkbox, drop downs
+
+// check()/click() - click on radio button and checbox
+
+// drop down
+// 2 Types of drop down
+
+// 1. static
+// 2. Dynamic - 
+
+/*
+1. <select> - selectOption()
+2. <div> -
+// First click on the drop down
+// Then select the option from the drop down by clicking on the values
+
+*/
+
+test.only('Radio button, checkbox and drop down built using select tag validation', async({page}) =>{
+    // https://practice.expandtesting.com/dropdown
+    await page.goto("https://rahulshettyacademy.com/angularpractice/")
+    await page.locator("#exampleCheck1").check()
+    await expect(page.locator("#exampleCheck1")).toBeChecked()
+    await page.locator("#inlineRadio1").check()
+    await expect(page.locator("#inlineRadio1")).toBeChecked()
+
+// selectOption()
+   await page.locator("select#exampleFormControlSelect1").selectOption("Female")
+
+   await page.waitForTimeout(2000)
+
+   await page.goto("https://practice.expandtesting.com/dropdown")
+   await page.locator("#country").selectOption("AL")
+   await page.waitForTimeout(2000)
+   await page.locator("#country").selectOption({label : "Cameroon"})
+   await page.waitForTimeout(2000)
+   await page.locator("#country").selectOption({index : 10})
+   await page.waitForTimeout(2000)
+
+})
+
+test.only("Drop Down built using div tag", async ({page})=>{
+    await page.goto("https://demoqa.com/select-menu")
+    await page.locator(".css-1hwfws3").first().click()
+    await page.locator("#react-select-2-option-1-0").click()
+    await page.waitForTimeout(2000)
+    await page.locator(".css-1hwfws3").last().click()
+    await page.locator("#react-select-4-option-0").click()
+    await page.locator("#react-select-4-option-1").click()
+    await page.waitForTimeout(2000)
+    await page.selectOption("#cars", ['volvo', 'Opel', 'Audi'])
+    await page.waitForTimeout(2000)
+
+})
+
 
 
