@@ -27,6 +27,8 @@
  * 3. Write css based on any attribute:
  * 
  * [attribute = 'value'] - Ex: - [type='username'] // [value="Login"]
+ * 
+ * tagname[attribute = 'value']
  *  
  * 
  * 4. Write css traversing from parent to child:

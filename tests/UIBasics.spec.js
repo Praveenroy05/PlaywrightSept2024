@@ -77,9 +77,10 @@ test("Get text from elements", async ({page}) =>{
 // 2. Dynamic - 
 
 /*
-1. <select> - selectOption()
+1. <select> - If developed using select tag use selectOption()
 2. <div> -
-// First click on the drop down
+// If developed using non select tag use this:
+//First click on the drop down
 // Then select the option from the drop down by clicking on the values
 
 */
