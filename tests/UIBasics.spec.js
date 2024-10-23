@@ -35,7 +35,7 @@ test("First Test case using page fixture", async ({page})=>{
     await page.goto("https://rahulshettyacademy.com/client")
     await page.locator('#userEmail').fill("testnHNk@gmail.com", {timeout :100*1000})
     await page.locator("//input[@type='password']").pressSequentially("Test@123")
-    await page.locator("#login").click()
+    await page.locator("#login").click({timeout: 30000})
     await expect(page.locator(".fa-sign-out")).toBeVisible()
 })
 
