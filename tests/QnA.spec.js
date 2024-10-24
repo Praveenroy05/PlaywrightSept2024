@@ -37,3 +37,23 @@ test("Student Registration Form", {tag: '@regression'}, async ({page})=>{
     await expect(page.locator("#example-modal-sizes-title-lg")).toContainText("Thanks for submitting the form")
  
 })
+
+
+test('Logo validation on the homepage', async ({ page }) => {
+  await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
+
+  const logo = await page.locator('.logoClass'); 
+
+  // Verify that the logo is visible on the page
+  await expect(logo).toBeVisible();
+
+  // Verify the logo's src attribute
+  const logoSrc = await logo.getAttribute('src');
+  expect(logoSrc).toBe('images/rs_logo.png'); 
+  expect(logo).toHaveAttribute('src','images/rs_logo.png')
+
+  // Optionally, check the logo dimensions
+  const width = await logo.boundingBox()
+  expect(width.width).toBeGreaterThan(50);  
+});
+
