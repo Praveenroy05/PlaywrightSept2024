@@ -9,7 +9,7 @@ test("Handling child window", async ({browser})=>{
   
 
 
-    await page.locator("[target='_blank']").click()
+    documentLink.click()
     const newPage = await context.waitForEvent('page')
     
 

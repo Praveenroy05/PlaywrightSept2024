@@ -57,3 +57,93 @@ test('Logo validation on the homepage', async ({ page }) => {
   expect(width.width).toBeGreaterThan(50);  
 });
 
+test("Basic Auth", async({page})=>{
+    const user = 'admin'
+    const password = 'admin'
+    const auth = 'Basic ' + btoa(user + ":" +password)
+    await page.setExtraHTTPHeaders({Authorization : auth})
+    await page.goto("https://the-internet.herokuapp.com/basic_auth")
+    await expect(page.locator(".example p")).toContainText("Congratulations! You must have the proper credentials.", {timeout:20000})
+
+})
+
+test("Popup validation", async ({page})=>{
+    await page.goto("https://demoqa.com/alerts")
+
+    page.on('dialog', async dialog =>{
+        const message = (dialog.message())
+        console.log(message)
+        await dialog.dismiss();
+    })
+    await page.locator("#alertButton").click()
+    await page.locator("#timerAlertButton").click()
+    await page.waitForTimeout(5000)
+
+    await page.locator("#confirmButton").click()
+    await expect(page.locator("#confirmResult")).toContainText("You selected Cancel")
+
+})
+
+test("Popup Fill validation", async ({page})=>{
+    await page.goto("https://demoqa.com/alerts")
+    const text = "This is Fill Pop-up"
+    page.on('dialog', async dialog =>{
+        const message = (dialog.message())
+        console.log(message)
+        await dialog.accept(text);
+    })
+    await page.locator("#promtButton").click()
+   
+    await expect(page.locator("#promptResult")).toContainText(text)
+
+})
+
+const cityname = "Chennai"
+const mydate = '05'
+
+test("first e2e", async({page})=>{
+    await page.goto("https://www.makemytrip.com/hotels/")
+   // await page.waitForTimeout(2000)
+    await page.locator(".commonModal__close").click()
+   // await page.getByRole("button", {name:'Accept'}).click()
+    //await page.waitForTimeout(20000)
+    await page.getByText("City, Property name or Location").click()
+    //await page.waitForTimeout(3000)
+  //  await page.locator("section span").first().click()
+    //await page.waitForTimeout(2000)
+    await page.getByPlaceholder("Where do you want to stay?").pressSequentially("ch")
+    //await page.waitForTimeout(2000)
+    const dropdownvalues = await page.locator("#react-autowhatever-1 li")
+    await dropdownvalues.first().waitFor({state:'visible'})
+    const countvalues = await dropdownvalues.count()
+     for(let i=0; i<countvalues; i++){
+     const textValue = await dropdownvalues.nth(i).textContent()
+     console.log(textValue)
+     if(textValue.includes(cityname)){
+        await dropdownvalues.nth(i).click()
+        break;
+  
+     }
+     await page.waitForTimeout(5000)
+
+}
+
+
+// await page.locator("#guest").click()
+// await page.waitForTimeout(2000)
+// await page.getByTestId("gstSlctCont").click()
+// await page.waitForTimeout(3000)
+// const dropdates = await page.getByTestId("adult_count")
+// console.log(dropdates)
+// const datecounts = await dropdates.count()
+// for(let i=0; i<datecounts; i++){
+// const value1 = await dropdates.nth(i).textContent()
+// if(value1 === mydate){
+//    await dropdates.nth(i).click()
+//    break;
+
+
+})
+
+
+
