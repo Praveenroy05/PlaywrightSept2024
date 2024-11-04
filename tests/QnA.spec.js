@@ -148,5 +148,45 @@ test("first e2e", async({page})=>{
 
 // Upload the files using windows selector
 
+//const myguest = '05'
 
+test("guest", async ({page}) => {
+    
+    await page.goto("https://www.makemytrip.com/hotels/")
+    await page.waitForTimeout(2000)
+    //await page.getByRole("button", {name:'Accept'}).click()
+    await page.locator(".commonModal__close").click()
+
+    await page.waitForTimeout(2000)
+    await page.locator("#guest").click()
+    await page.waitForTimeout(2000)
+    
+    //await page.locator("section span").first().click()
+    await page.waitForTimeout(2000)
+    await page.getByTestId("adult_count").click()
+    
+    const guest = await page.locator("//li[@data-cy='GuestSelect$$_323']")
+    const count = await guest.count()
+    console.log(count)
+    for(let i=0; i<count;i++){
+    const people = await guest.nth(i).textContent()
+    console.log(people)
+    if(people.includes("05")){
+       await guest.nth(i).click()
+       break;
+    
+     }
+
+     await page.waitForTimeout(5000)
+
+
+} 
+
+// await page.locator("//button['@text=Apply']").first().click()
+// await page.waitForTimeout(2000)
+//("//li[@data-cy='GuestSelect$$_323']")                                   
+    //("//ul[@class='gstSlct__list']")
+ 
+
+})
 
