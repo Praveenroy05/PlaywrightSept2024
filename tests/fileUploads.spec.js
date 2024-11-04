@@ -6,9 +6,10 @@ test('Single File upload', async ({page})=>{
     // C:\Users\prave\OneDrive\Documents\Praveen-PW\PWSeptisha2024\tests\Cypress.txt
 
     //setInputFiles(path of the file(s)) - It helps us in uploading
-    await page.locator("[name='upfile']").setInputFiles("C:\\Users\\prave\\OneDrive\\Documents\\Praveen-PW\\PWSeptisha2024\\tests\\Cypress.txt")
+    await page.locator("[name='upfile']").setInputFiles("C:/Users/prave/OneDrive/Documents/Praveen-PW/PWSeptisha2024/tests/Cypress.txt")
     await page.locator("[type='submit']").click()
     await expect(page.locator("//h1[text()='File Upload Results']/following-sibling::pre")).toBeVisible()
+await page.waitForTimeout(5000)
 })
 
 test('Multiple Files upload', async ({page})=>{
