@@ -35,7 +35,7 @@ npm install
 ## To Run normal playwright script for registration and Login Run the below command
 
 ```sh
-npx playwright test tests/RegisterAndLogin.spec.js
+npx playwright test tests/fileName.spec.js
 OR
 npm run registerAndLogin
 ```
