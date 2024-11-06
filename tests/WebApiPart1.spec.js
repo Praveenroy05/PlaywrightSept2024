@@ -68,3 +68,32 @@ test("Validate order of the product", async ({page})=>{
 
 
 
+
+
+
+
+// POM - Page Object Model is a design pattern 
+
+// Page by page manner
+
+// 2 Different layers 
+
+// 1. Page layer 
+//      locators related to the specific page (LoginPage.js)
+//      methods related to the specific page
+
+// 2. Test Layer
+//      Test cases related to the specific page (LoginPageTest.spec.js)
+//      Assertions
+
+// 3. Utils functions (Generic function) - Utils
+
+
+// pageObject -->pages , loginPage.js, dashboardpage.js
+// locators and methods
+
+
+// loginPageTest.spec., dashboardPageTest.spec.js
+// call the methods
+// Assertions
+

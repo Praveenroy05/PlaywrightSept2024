@@ -4,6 +4,7 @@ const productName = "IPHONE 13 PRO"
 const countryName = " Indonesia"
 
 test("Validate order of the product", async ({page})=>{
+    const login = new LoginPage(page)
     await page.goto("https://rahulshettyacademy.com/client")
     await page.locator(".form-control").nth(0).fill("test7lYM@gmail.com")
     await page.locator(".form-control").nth(1).fill("Test@123")
