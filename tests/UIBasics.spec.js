@@ -6,7 +6,7 @@ const {test, expect} = require('@playwright/test')
 //import {test, expect} from '@playwright/test';
 
 // browser, page
-test("First Test Case", async function({browser}){
+test("@smoke First Test Case", async function({browser}){
 
     const context = await browser.newContext() // It will initialise the browser context or instance
     const page = await context.newPage() // Creates a new page in the browser context.
@@ -30,7 +30,7 @@ test("First Test Case", async function({browser}){
 
 // locator(), fill(), click(), toBeVisible()
 
-test("First Test case using page fixture", async ({page})=>{
+test("@smoke First Test case using page fixture", async ({page})=>{
 
     await page.goto("https://rahulshettyacademy.com/client")
     await page.locator('#userEmail').fill("testnHNk@gmail.com", {timeout :100*1000})
@@ -51,7 +51,7 @@ test("First Test case using page fixture", async ({page})=>{
 
 // .form-control - matching 2 different elements
 
-test("Get text from elements", async ({page}) =>{
+test("@smoke @regression Get text from elements", async ({page}) =>{
 
     await page.goto("https://rahulshettyacademy.com/client")
     await page.locator(".form-control").nth(0).fill("testnHNk@gmail.com")
@@ -85,7 +85,7 @@ test("Get text from elements", async ({page}) =>{
 
 */
 
-test.only('Radio button, checkbox and drop down built using select tag validation', async({page}) =>{
+test(' @regression Radio button, checkbox and drop down built using select tag validation', async({page}) =>{
     // https://practice.expandtesting.com/dropdown
     await page.goto("https://rahulshettyacademy.com/angularpractice/")
     await page.locator("#exampleCheck1").check()
@@ -108,7 +108,7 @@ test.only('Radio button, checkbox and drop down built using select tag validatio
 
 })
 
-test.only("Drop Down built using div tag", async ({page})=>{
+test("@regression Drop Down built using div tag", async ({page})=>{
     await page.goto("https://demoqa.com/select-menu")
     await page.locator(".css-1hwfws3").first().click()
     await page.locator("#react-select-2-option-1-0").click()

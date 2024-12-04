@@ -13,20 +13,20 @@ const { defineConfig, devices, chromium } = require('@playwright/test');
 module.exports = defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
-  fullyParallel: false,
+  fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : undefined,
+  retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 10 : 1,
+  workers: process.env.CI ? 10 : 10,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [["html"], ["line"], ["allure-playwright"]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
- timeout : 60000,
- expect:{
-  timeout:20000
- },
+//  timeout : 60000,
+//  expect:{
+//   timeout:20000
+//  },
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
@@ -35,8 +35,7 @@ module.exports = defineConfig({
     trace: 'on',
     screenshot :'on',
     video:'on',
-   // browserName : 'chromium',
-    headless :false
+    headless :true
 
   },
 
@@ -49,10 +48,10 @@ module.exports = defineConfig({
       },
     },
 
-  /*  {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },*/
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
     // {
     //   name: 'webkit',

@@ -2,14 +2,24 @@
   "name": "pwseptisha2024",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "del /q /f allure-results\\* & npx playwright test tests/DashboardPageTest.spec.js",
+    "fulltest": "npx playwright test",
+    "smoke": "npx playwright test --grep @smoke",
+    "smokeAndRegression": "npx playwright test --grep @smoke & @regression",
+    "smokeOrRegression": "npx playwright test --grep @smoke | @regression",
+    "allure:generate": "npx ",
+    "allure:open": "npx allure serve allure-results"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.47.2",
-    "@types/node": "^22.7.4"
+    "@types/node": "^22.7.4",
+    "allure-commandline": "^2.32.0",
+    "allure-playwright": "^3.0.6"
   },
   "dependencies": {
     "pwseptisha2024": "file:"

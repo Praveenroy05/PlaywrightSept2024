@@ -7,7 +7,7 @@
 
 const {test, expect}  = require('@playwright/test')
 
-test("mouse Operation", async ({page})=>{
+test("mouse Operation", {tag : '@smoke'}, async ({page})=>{
     // right click, double click
  
     await page.goto("https://demo.guru99.com/test/simple_context_menu.html")
@@ -24,7 +24,7 @@ test("mouse Operation", async ({page})=>{
 
 // popup or alert - 'dialog' dialog.accept(), dismiss()
 
-test("Handing pop-ups", async ({page})=>{
+test("Handing pop-ups", {tag : '@smoke'}, async ({page})=>{
     await page.goto("https://demoqa.com/alerts")
     await page.locator("#alertButton").click()
     // on('dialog', dialog => dialog.dismiss())
@@ -52,7 +52,7 @@ test("Enter the text on pop-up", async ({page})=>{
 
 })
 
-test("Mouse Hover and Drag and drop", async ({page})=>{
+test("Mouse Hover and Drag and drop", {tag : '@regression'}, async ({page})=>{
     await page.goto("https://www.spicejet.com/")
     //hover() - It perform a hover over an element
     await page.getByText("SpiceClub").first().hover()

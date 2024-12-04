@@ -37,7 +37,7 @@ orderID = await orderResponseJson.orders[0] // orders = ["6728f875ae2afd4c0bb27b
 
 // token - 
 
-test("Validate order of the product", async ({page})=>{
+test("@API Validate order of the product", async ({page})=>{
 
     await page.addInitScript((value)=>{
         window.localStorage.setItem('token', value)
